@@ -1,0 +1,12 @@
+{
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.htmlLanguages": [
+    "blade", "edge", "eelixir", "ejs", "elixir", "elm", "erb", "eruby", "haml", "handlebars", "htmldjango", "html", "HTML (EEx)", "HTML (Eex)", "html.twig", "jade", "leaf", "liquid", "markdown", "njk", "nunjucks", "php", "razor", "slim", "svelte", "twig", "vue" 
+  ],
+  "emmet.includeLanguages": {
+    "liquid": "html"
+  },
+  "html.filetypes":[
+    "html","handlebars","htmldjango","blade","liquid"
+  ]
+}
