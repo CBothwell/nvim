@@ -8,5 +8,14 @@
   },
   "html.filetypes":[
     "html","handlebars","htmldjango","blade","liquid"
-  ]
+  ],
+  "languageserver": {
+    "rescript": {
+      "enable": true,
+      "module": "~/.config/nvim/plugged/vim-rescript/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript"],
+      "rootPatterns": ["bsconfig.json"]
+    }
+  }
 }
