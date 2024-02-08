@@ -6,7 +6,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'flazz/vim-colorschemes'
   Plug 'junegunn/fzf'
-  Plug 'Exafunction/codeium.vim'
+  Plug 'fatih/vim-go', { 'do' : ':GoUpdateBinaries' }
+  " Plug 'Exafunction/codeium.vim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -25,7 +26,7 @@ source ~/.config/nvim/lua/lsp.lua
 " nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Codeium configs.
-let g:airline_section_y = '{…}%3{codeium#GetStatusString()}'
+" let g:airline_section_y = '{…}%3{codeium#GetStatusString()}'
 
 set updatetime=300
 set nobackup
