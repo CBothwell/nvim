@@ -7,7 +7,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'flazz/vim-colorschemes'
   Plug 'junegunn/fzf'
   Plug 'fatih/vim-go', { 'do' : ':GoUpdateBinaries' }
-  " Plug 'Exafunction/codeium.vim'
+  Plug 'Exafunction/codeium.vim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -17,8 +17,19 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
+  Plug 'miikanissi/modus-themes.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+  Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'rktjmp/lush.nvim'
 call plug#end()
 
+let mapleader = "\<space>"
+set terminalguicolors
+setlocal cursorline
+
+source ~/.config/nvim/lua/telescope-config.lua
 source ~/.config/nvim/lua/treesitter-config.lua
 source ~/.config/nvim/lua/lsp.lua
 
@@ -26,7 +37,7 @@ source ~/.config/nvim/lua/lsp.lua
 " nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Codeium configs.
-" let g:airline_section_y = '{…}%3{codeium#GetStatusString()}'
+let g:airline_section_y = '{…}%3{codeium#GetStatusString()}'
 
 set updatetime=300
 set nobackup
@@ -47,6 +58,8 @@ let g:airline_theme = 'bubblegum'
 let g:airline_powerline_fonts = 1
 
 colorscheme k1989
+"colorscheme 1989
+" colorscheme modus_vivendi
 
 set hidden 
 autocmd FileType netrw nnoremap q :bd<CR>

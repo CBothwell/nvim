@@ -54,19 +54,19 @@ lspconfig.dockerls.setup{
 }
 lspconfig.jsonls.setup{capabilities = capabilities}
 lspconfig.ocamllsp.setup{capabilities = capabilities}
-lspconfig.emmet_ls.setup{
+--lspconfig.emmet_ls.setup{
   -- on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "json", "sass", "scss", "typescript", "typescriptreact", "svelte", "vue" },
-  init_options = {
-    html = {
-      options = {
+ -- capabilities = capabilities,
+  --filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "json", "sass", "scss", "typescript", "typescriptreact", "svelte", "vue" },
+ -- init_options = {
+  --  html = {
+   --   options = {
         -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79
-        ["bem.enabled"] = true,
-      },
-    },
-  },
-}
+    --    ["bem.enabled"] = true,
+     -- },
+   -- },
+ -- },
+--}
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
@@ -76,3 +76,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end
 })
+
+vim.keymap.set('n', '<leader>lk', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist)
+
+
+
+
+
+
