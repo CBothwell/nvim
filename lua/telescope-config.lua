@@ -19,14 +19,14 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- LSP tools
-vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
-vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, {})
-vim.keymap.set('n', '<leader>fD', builtin.lsp_type_definitions, {})
-vim.keymap.set('n', '<leader>fm', builtin.lsp_document_symbols, {})
-vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, {})
-vim.keymap.set('n', '<leader>fc', builtin.lsp_incoming_calls, {})
-vim.keymap.set('n', '<leader>fo', builtin.lsp_outgoing_calls, {})
-vim.keymap.set('n', '<leader>fK', builtin.diagnostics, {})
+vim.keymap.set('n', '<leader>lsr', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>lsd', builtin.lsp_definitions, {})
+vim.keymap.set('n', '<leader>lsD', builtin.lsp_type_definitions, {})
+vim.keymap.set('n', '<leader>lsm', builtin.lsp_document_symbols, {})
+vim.keymap.set('n', '<leader>lsi', builtin.lsp_implementations, {})
+vim.keymap.set('n', '<leader>lsc', builtin.lsp_incoming_calls, {})
+vim.keymap.set('n', '<leader>lso', builtin.lsp_outgoing_calls, {})
+vim.keymap.set('n', '<leader>lsK', builtin.diagnostics, {})
 
 -- tree tools
-vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
+vim.keymap.set('n', '<leader>tt', builtin.treesitter, {})

@@ -22,16 +22,20 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
   Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
+  Plug 'mhartington/formatter.nvim'
+  Plug 'mfussenegger/nvim-lint'
   Plug 'rktjmp/lush.nvim'
 call plug#end()
 
 let mapleader = "\<space>"
-set terminalguicolors
+set termguicolors
 setlocal cursorline
 
+source ~/.config/nvim/lua/lsp.lua
 source ~/.config/nvim/lua/telescope-config.lua
 source ~/.config/nvim/lua/treesitter-config.lua
-source ~/.config/nvim/lua/lsp.lua
 
 " Use K to show documentation in preview window.
 " nnoremap <silent> K :call <SID>show_documentation()<CR>
