@@ -27,6 +27,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'mhartington/formatter.nvim'
   Plug 'mfussenegger/nvim-lint'
   Plug 'rktjmp/lush.nvim'
+  Plug 'rafamadriz/friendly-snippets'
 call plug#end()
 
 let mapleader = "\<space>"

@@ -1,6 +1,25 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+local util = require("lspconfig/util")
+local path = util.path
+
+local function get_python_path(workspace)
+  -- Use activated poetry
+  if vim.env.VIRTUAL_ENV then
+    return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+  end 
+
+  -- Find and use poetry from poetry in workspace directory
+  local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
+  if match ~= '' then
+    local venv = vim.fn.trim(vim.fn.system('poetry env info -p'))
+    return path.join(venv, 'bin', 'python')
+  end 
+  
+  -- Fallback to system python
+  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+end
 
 local cmp = require'cmp'
 cmp.setup({
@@ -60,7 +79,14 @@ lspconfig.tailwindcss.setup({
 lspconfig.tsserver.setup{
   capabilities = capabilities
 }
-lspconfig.pylsp.setup{
+lspconfig.pyright.setup{
+  on_attach = function() 
+    require'lsp_signature'.on_attach {
+    }
+  end,
+  on_init = function(client)
+    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+  end,
   capabilities = capabilities
 }
 lspconfig.sourcekit.setup{
@@ -126,10 +152,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
--- vim.keymap.set('n', '<leader>lk', vim.diagnostic.open_float)
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
--- vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<C-k>', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist)
 
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = vim.lsp.buf.format })
