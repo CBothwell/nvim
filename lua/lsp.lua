@@ -69,6 +69,11 @@ lspconfig.htmx.setup({
   filetypes = { "html", "templ" },
 })
 
+lspconfig.clangd.setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})
+
 lspconfig.emmet_language_server.setup{
   capabilities = capabilities
 }
@@ -76,11 +81,9 @@ lspconfig.tailwindcss.setup({
   capabilities = capabilities,
   filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "templ" },
 })
-lspconfig.tsserver.setup{
-  capabilities = capabilities
-}
 lspconfig.pyright.setup{
   on_attach = function() 
+    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
     require'lsp_signature'.on_attach {
     }
   end,
@@ -90,7 +93,13 @@ lspconfig.pyright.setup{
   capabilities = capabilities
 }
 lspconfig.sourcekit.setup{
-  capabilities = capabilities
+    capabilities = {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    },
+  },
 }
 lspconfig.cssls.setup{
   capabilities = capabilities
@@ -106,6 +115,9 @@ lspconfig.dockerls.setup{
 }
 lspconfig.jsonls.setup{capabilities = capabilities}
 lspconfig.ocamllsp.setup{capabilities = capabilities}
+
+
+
 --lspconfig.emmet_ls.setup{
   -- on_attach = on_attach,
  -- capabilities = capabilities,
@@ -114,34 +126,16 @@ lspconfig.ocamllsp.setup{capabilities = capabilities}
   --  html = {
    --   options = {
         -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79
-    --    ["bem.enabled"] = true,
-     -- },
    -- },
  -- },
 --}
 
---autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd('BufWritePre', {
  -- pattern = "*.go",
-  --callback = function()
-    --local params = vim.lsp.util.make_range_params()
-   -- params.context = {only = {"source.organizeImports"}}
-    -- buf_request_sync defaults to a 1000ms timeout. Depending on your
-    -- machine and codebase, you may want longer. Add an additional
-    -- argument after params if you find that you have to write the file
-    -- twice for changes to be saved.
-    -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-    --local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-    --for cid, res in pairs(result or {}) do
-    --  for _, r in pairs(res.result or {}) do
-     --   if r.edit then
-      --    local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-       --   vim.lsp.util.apply_workspace_edit(r.edit, enc)
-       -- end
-     -- end
-   -- end
-   -- vim.lsp.buf.format({async = false})
- -- end
---})
+ callback = function()
+   vim.lsp.buf.format({async = false})
+  end
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
@@ -149,6 +143,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client.server_capabilities.hoverProvider then
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = args.buf})
     end
+
+    local wk = require('which-key')
+    wk.register({
+      K = { vim.lsp.buf.hover, "LSP hover info"},
+      gd = { vim.lsp.buf.definition, "LSP go to definition"},
+      gD = { vim.lsp.buf.declaration, "LSP go to declaration"},
+      gi = { vim.lsp.buf.implementation, "LSP go to implementation"},
+      gr = { vim.lsp.buf.references, "LSP list references"},
+      gs = { vim.lsp.buf.signature_help, "LSP signature help"},
+      gn = { vim.lsp.buf.rename, "LSP rename"},
+      ["[g"] = { vim.diagnostic.goto_prev, "Go to previous diagnostic"},
+      ["g]"] = { vim.diagnostic.goto_next, "Go to next diagnostic"},
+    }, {
+      mode = 'n',
+      silent = true,
+    })
   end
 })
 
