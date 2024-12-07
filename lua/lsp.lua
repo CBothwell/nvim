@@ -1,5 +1,22 @@
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = {
+    "templ",
+    "gopls",
+    "htmx",
+    "clangd",
+    "emmet_language_server",
+    "tailwindcss",
+    "pyright",
+    "html",
+    "dockerls",
+    "jsonls",
+    "ocamllsp",
+    "ts_ls",
+    "lua_ls",
+    "neocmmake",
+  },
+}
 
 local util = require("lspconfig/util")
 local path = util.path
@@ -56,6 +73,14 @@ lspconfig.gopls.setup{
       gofumpt = true,
     },
   },
+}
+
+lspconfig.neocmake.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.ts_ls.setup{
+  capabilities=capabilities
 }
 
 lspconfig.templ.setup{
@@ -115,20 +140,6 @@ lspconfig.dockerls.setup{
 }
 lspconfig.jsonls.setup{capabilities = capabilities}
 lspconfig.ocamllsp.setup{capabilities = capabilities}
-
-
-
---lspconfig.emmet_ls.setup{
-  -- on_attach = on_attach,
- -- capabilities = capabilities,
-  --filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "json", "sass", "scss", "typescript", "typescriptreact", "svelte", "vue" },
- -- init_options = {
-  --  html = {
-   --   options = {
-        -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79
-   -- },
- -- },
---}
 
 vim.api.nvim_create_autocmd('BufWritePre', {
  -- pattern = "*.go",

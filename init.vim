@@ -44,6 +44,9 @@ source ~/.config/nvim/lua/lsp.lua
 source ~/.config/nvim/lua/telescope-config.lua
 source ~/.config/nvim/lua/treesitter-config.lua
 
+" vim-vsnip
+" TODO: Work on setting this up
+
 "set updatetime=300
 "set nobackup
 "set nowritebackup
@@ -61,7 +64,6 @@ set hidden
 autocmd FileType netrw nnoremap q :bd<CR>
 
 syntax on
-" set rtp^="/Users/christopher/.opam/default/share/ocp-indent/vim"
 set nu
 set ruler 
 filetype plugin on 
