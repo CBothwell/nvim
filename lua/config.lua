@@ -117,8 +117,44 @@ require 'rainbow-delimiters.setup'.setup {
 }
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "*.py", "*.fs", "*.ml", "*.hs", "*.sql" }, -- tab delimted languages
+  pattern = { "*.py", "*.fs", "*.ml", "*.hs", "*.sql", "*.yaml", "Makefile", "Dockerfile" }, -- tab delimted languages
   callback = function()
-    require("ibl").setup { indent = { highlight = highlight } }
+    require("ibl").setup {
+      indent = {
+        highlight = highlight
+      },
+      exclude = {
+        filetypes = {
+          "lspinfo",
+          "packer",
+          "checkhealth",
+          "help",
+          "man",
+          "gitcommit",
+          "TelescopePrompt",
+          "TelescopeResults",
+          "",
+          "cpp",
+          "c",
+          "go",
+          "gomod",
+          "javascript",
+          "typescript",
+          "reasonml",
+          "json",
+          "perl",
+          "lua",
+          "templ",
+          "cmake",
+          "css",
+          "php",
+          "html",
+          "xml",
+          "toml",
+          "md",
+          "markdown",
+        }
+      }
+    }
   end
 })
