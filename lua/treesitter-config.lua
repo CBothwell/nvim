@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "all", 
+  ensure_installed = "all",
   sync_install = false,
   auto_install = true,
 
@@ -13,6 +13,6 @@ vim.filetype.add({
   extension = {
     webc = "webc",
   },
-  filename = {['.webc'] = 'html'},
+  filename = { ['.webc'] = 'html' },
 })
 vim.treesitter.language.register('html', 'webc')

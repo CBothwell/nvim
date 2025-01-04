@@ -1,4 +1,3 @@
-
 require('telescope').setup {
   extensions = {
     fzf = {
@@ -12,21 +11,25 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 
 local builtin = require("telescope.builtin")
--- find tools
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
--- LSP tools
-vim.keymap.set('n', '<leader>lr', builtin.lsp_references, {})
-vim.keymap.set('n', '<leader>ld', builtin.lsp_definitions, {})
-vim.keymap.set('n', '<leader>lD', builtin.lsp_type_definitions, {})
-vim.keymap.set('n', '<leader>lsm', builtin.lsp_document_symbols, {})
-vim.keymap.set('n', '<leader>lsi', builtin.lsp_implementations, {})
-vim.keymap.set('n', '<leader>li', builtin.lsp_incoming_calls, {})
-vim.keymap.set('n', '<leader>lo', builtin.lsp_outgoing_calls, {})
-vim.keymap.set('n', '<leader>lk', builtin.diagnostics, {})
+local wk = require('which-key')
+wk.add({
+  { "<Space>ff", builtin.find_files,           desc = "Fuzzy find files" },
+  { "<Space>fg", builtin.live_grep,            desc = "Grep" },
+  { "<Space>fb", builtin.buffers,              desc = "Fuzzy find buffers" },
+  { "<Space>fh", builtin.help_tags,            desc = "Find by help tags" },
 
--- tree tools
-vim.keymap.set('n', '<leader>tt', builtin.treesitter, {})
+  { "<Space>fD", builtin.lsp_type_definitions, desc = "Lsp type Definitions" },
+  { "<Space>fr", builtin.lsp_references,       desc = "Lsp refereneces" },
+  { "<Space>fd", builtin.lsp_definitions,      desc = "Lsp definitions" },
+  { "<Space>fm", builtin.lsp_document_symbols, desc = "Lsp Document Symbols" },
+  { "<Space>fi", builtin.lsp_implementations,  desc = "Lsp Implementations" },
+  { "<Space>fc", builtin.lsp_incoming_calls,   desc = "Lsp Incomming calls" },
+  { "<Space>fC", builtin.lsp_outgoing_calls,   desc = "Lsp Outgoing calls" },
+  { "<Space>fK", builtin.diagnostics,          desc = "Lsp diagnostics" },
+
+  { "<Space>tt", builtin.treesitter,           desc = "Treesitter" },
+}, {
+  mode = 'n',
+  silent = true,
+})

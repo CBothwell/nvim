@@ -3,10 +3,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'nvim-lualine/lualine.nvim'
-  Plug 'flazz/vim-colorschemes'
   Plug 'junegunn/fzf'
-  Plug 'fatih/vim-go', { 'do' : ':GoUpdateBinaries' }
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'ray-x/go.nvim'
+  Plug 'ray-x/guihua.lua'
+"  Plug 'fatih/vim-go', { 'do' : ':GoUpdateBinaries' }
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
@@ -15,10 +16,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
-  Plug 'miikanissi/modus-themes.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+  Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
@@ -28,14 +28,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'rafamadriz/friendly-snippets'
   Plug 'echasnovski/mini.icons'
   Plug 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug '~/.config/nvim/bosswell'
 call plug#end()
 
-let mapleader = "\<space>"
 set termguicolors
 set cursorline
 
-"colorscheme k1989
 colorscheme bosswell
 set background=dark
 
@@ -46,19 +45,6 @@ source ~/.config/nvim/lua/treesitter-config.lua
 
 " vim-vsnip
 " TODO: Work on setting this up
-
-"set updatetime=300
-"set nobackup
-"set nowritebackup
-"set shortmess+=c
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-"if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-"  set signcolumn=number
-"else
-"  set signcolumn=yes
-"endif
 
 set hidden 
 autocmd FileType netrw nnoremap q :bd<CR>
