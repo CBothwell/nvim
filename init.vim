@@ -6,7 +6,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf'
   Plug 'ray-x/go.nvim'
   Plug 'ray-x/guihua.lua'
-"  Plug 'fatih/vim-go', { 'do' : ':GoUpdateBinaries' }
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/cmp-nvim-lsp'
